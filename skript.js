@@ -127,8 +127,12 @@ function summaArvutamine(korv){
     const tarneviis=document.querySelector("input[type='radio'][name=tarneviis]:checked");
     let summa=0;
     korv.forEach(korvArtikkel => {
-        summa=Math.round(((summa+Number(korvArtikkel.hind)*korvArtikkel.kogus+Number(tarneviis.value))*100))/100;
+        summa=summa+Number(korvArtikkel.hind)*korvArtikkel.kogus;
     })
+    if (tarneviis!=null){
+        summa=summa+Number(tarneviis.value)
+    }
+    summa=Math.round(summa*100)/100
     document.getElementById("toodeteSumma").innerHTML = "Kokku: " +summa+ "€";
 }
 
